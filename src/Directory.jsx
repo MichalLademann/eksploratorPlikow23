@@ -1,13 +1,19 @@
-function Directory(name, type, children) {
+
+function Directory({ name, type, children }) {
     return (
         <>
-                    <p>{x.name}, {x.type}</p>
-                    {x.children.map(
-                        (child) => <Directory name={child.name} type={child.type} children={child.children}></Directory>
-
-                    )}
-                </>
+            <p>{name}, {type}</p>
+            {type === 'folder' && children && children.map(
+                (child) => (
+                    <Directory
+                        key={child.id ?? child.name}
+                        name={child.name}
+                        type={child.type}
+                        children={child.children}
+                    />
+                )
+            )}
+        </>
     )
 }
-
 export default Directory
